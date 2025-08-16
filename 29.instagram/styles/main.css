@@ -1,0 +1,542 @@
+/* ===== general.css ===== */
+
+/* 모든 요소와 요소의 가상(before/after) 요소를 선택 */
+*,
+/* 모든 ::after 가상 요소를 선택 */
+*::after,
+/* 모든 ::before 가상 요소를 선택 */
+*::before {
+  /* box-sizing 속성 정의: 요소의 width/height에 padding과 border를 포함하도록 설정 */
+  box-sizing: border-box; 
+  /* 요소의 기본 margin(바깥 여백)을 0으로 초기화 */
+  margin: 0;
+  /* 요소의 기본 padding(안쪽 여백)을 0으로 초기화 */
+  padding: 0;
+}
+
+/* 모든 요소와 폼 관련 요소를 선택 */
+*,
+button,
+input,
+select,
+textarea {
+  /* 폰트 패밀리를 'Roboto'로 통일 */
+  font-family: 'Roboto';
+}
+
+/* 문서 전체를 감싸는 body 요소 */
+body {
+  /* 최소 높이를 뷰포트 높이(viewport height)만큼 설정 */
+  min-height: 100vh;
+  /* body를 flex 컨테이너로 만들어 자식 요소들을 유연하게 배치 */
+  display: flex;
+  /* flex 컨테이너의 주 축을 수직(column)으로 설정 */
+  flex-direction: column;
+  /* 콘텐츠가 넘칠 때 세로 스크롤을 자동으로 표시 */
+  overflow-y: auto;
+}
+
+/* 모든 이미지 요소 */
+img {
+  /* 부모 요소의 너비를 넘지 않도록 최대 너비를 100%로 제한 */
+  max-width: 100%;
+}
+
+/* ===== header.css ===== */
+
+/* .header 클래스(상단 네비게이션 바) */
+.header {
+  width: 100%;           /* 가로 너비를 화면 전체로 설정 */
+  height: 44px;          /* 고정된 높이 44px 설정 */
+  background-color: #fff;/* 배경색을 흰색(#FFFFFF)으로 설정 */
+  display: flex;         /* 내부 아이템을 flex로 배치 */
+  justify-content: center; /* 내부 콘텐츠를 수평 중앙 정렬 */
+  position: fixed;       /* 화면 스크롤과 상관없이 고정 위치 */
+  top: 0;                /* 화면 최상단에 위치 */
+  left: 0;               /* 화면 왼쪽 끝에 위치 */
+  z-index: 2;            /* 다른 요소보다 위에 표시되도록 z-index 설정 */
+  border-bottom: 1px solid #DBDBDB; /* 하단에 연한 회색 테두리 추가 */
+}
+
+/* .header__content 클래스(헤더 내부 콘텐츠 래퍼) */
+.header__content {
+  width: 100%;               /* 부모 요소(.header) 너비 100% */
+  max-width: 975px;          /* 최대 너비 975px 제한 */
+  padding: 0 14px;           /* 좌우에 14px 패딩 추가 */
+  display: flex;             /* 내부 요소를 flex로 배치 */
+  justify-content: space-between; /* 좌우 끝으로 요소 배치 */
+  align-items: center;       /* 세로 중앙 정렬 */
+}
+
+/* .header__logo 클래스(로고 이미지 컨테이너) */
+.header__logo {
+  margin-top: 5px;           /* 위쪽에 5px 여백 추가하여 위치 조정 */
+}
+
+/* .header__search 클래스(검색창 래퍼) */
+.header__search {
+  width: 216px;              /* 고정된 너비 216px */
+  height: 28px;              /* 고정된 높이 28px */
+  display: none;             /* 기본 상태에서는 숨김 */
+  align-items: center;       /* 내부 요소 수직 중앙 정렬 */
+  position: relative;        /* 자식 요소의 절대 위치 기준 컨테이너 */
+}
+
+/* .header__search img(검색 아이콘) */
+.header__search img {
+  width: 12px;               /* 아이콘 너비 12px */
+  height: 12px;              /* 아이콘 높이 12px */
+  position: absolute;        /* 절대 위치 지정 */
+  top: 8px;                  /* 부모 위쪽으로부터 8px 위치 */
+  left: 8px;                 /* 부모 왼쪽으로부터 8px 위치 */
+}
+
+/* .header__search input(검색 입력 필드) */
+.header__search input {
+  width: 100%;               /* 부모 컨테이너 너비 100% */
+  height: 100%;              /* 부모 컨테이너 높이 100% */
+  background-color: #FAFAFA; /* 입력 필드 배경색 연회색 */
+  padding: 4px 10px 4px 28px;/* 상하 4px, 우 10px, 좌(아이콘 공간) 28px 패딩 */
+  border: 1px solid #DBDBDB; /* 연한 회색 테두리 */
+  border-radius: 4px;        /* 모서리 둥글게 4px */
+  outline: none;             /* 포커스 시 기본 윤곽선 제거 */
+  font-size: 12px;           /* 폰트 크기 12px */
+  text-decoration: none;     /* 텍스트 장식 제거 */
+}
+
+/* .header__search input 포커스 상태 */
+.header__search input:focus {
+  color: #262626;            /* 입력 시 글자 색상을 진한 회색으로 변경 */
+}
+
+/* .header__buttons 클래스(헤더 우측 버튼 묶음) */
+.header__buttons {
+  display: flex;             /* 내부 아이콘을 flex로 배치 */
+  align-items: center;       /* 세로 중앙 정렬 */
+  gap: 16px;                 /* 아이콘 사이 16px 간격 */
+}
+
+/* .profile__picture 클래스(프로필 아바타 컨테이너) */
+.profile__picture {
+  width: 24px;               /* 너비 24px */
+  height: 24px;              /* 높이 24px */
+}
+
+/* 화면 너비 768px 이상일 때 검색창 보이도록 설정 */
+@media (min-width: 768px) {
+  .header__search {
+    display: flex;           /* flex로 변경하여 표시 */
+  }
+}
+
+/* ===== main.css ===== */
+
+/* .main-container 클래스(메인 콘텐츠 전체 래퍼) */
+.main-container {
+  background-color: #FFFFFF; /* 배경색 흰색 */
+  margin-top: 44px;          /* 상단 헤더 높이만큼 여백 확보 */
+  margin-bottom: 44px;       /* 하단 여백 확보 */
+  display: flex;             /* 내부를 flex 레이아웃으로 배치 */
+}
+
+/* .content-container 클래스(콘텐츠+사이드바 래퍼) */
+.content-container {
+  width: 100%;               /* 너비 100% */
+  max-width: 935px;          /* 최대 너비 제한 */
+  padding: 0 0 8px;          /* 하단 패딩 8px */
+  margin: 0 auto;            /* 수평 가운데 정렬 */
+  display: flex;             /* 내부를 가로 flex 배치 */
+}
+
+/* .content 클래스(스토리+게시물 래퍼) */
+.content {
+  width: 100%;               /* 너비 100% */
+  max-width: 614px;          /* 최대 너비 제한 */
+  margin: 0 auto;            /* 가로 중앙 정렬 */
+  display: flex;             /* 내부를 flex 배치 */
+  flex-direction: column;    /* 세로 방향으로 쌓기 */
+}
+
+/* ===== 스토리 영역 ===== */
+
+/* .stories 클래스(스토리 전체 컨테이너) */
+.stories {
+  width: 100%;               /* 너비 100% */
+  background-color: #FFFFFF; /* 배경 흰색 */
+  padding: 16px 0;           /* 상하 패딩 16px */
+  position: relative;        /* 자식 절대 위치 기준 */
+  overflow: hidden;          /* 자식 스크롤 요소 가리기 */
+}
+
+/* .stories 의 after 가상 요소(하단 선) */
+.stories::after {
+  content: '';               /* 빈 콘텐츠 */
+  position: absolute;        /* 절대 위치 */
+  bottom: 0;                 /* 컨테이너 바닥에 위치 */
+  width: 100%;               /* 너비 100% */
+  height: 1px;               /* 높이 1px */
+  background-color: #DBDBDB; /* 연한 회색 배경 */
+}
+
+/* .stories__content 클래스(스토리 리스트) */
+.stories__content {
+  display: flex;             /* 가로 방향 flex */
+  overflow-x: auto;          /* 수평 스크롤 허용 */
+  overflow-y: hidden;        /* 수직 스크롤 숨김 */
+  gap: 16px;                 /* 아이템 사이 16px 간격 */
+  padding: 0 16px;           /* 좌우 패딩 16px */
+  position: relative;        /* 자식 절대 위치 기준 */
+  scroll-behavior: smooth;   /* 부드러운 스크롤 */
+  scrollbar-width: none;     /* Firefox 스크롤바 숨김 */
+}
+
+/* 웹킷 브라우저 스크롤바 숨김 */
+.stories__content::-webkit-scrollbar {
+  display: none;
+}
+
+/* .story 클래스(개별 스토리 버튼) */
+.story {
+  background-color: transparent; /* 배경 투명 */
+  border: none;                  /* 테두리 없음 */
+  cursor: pointer;               /* 클릭 가능 커서 */
+  display: flex;                 /* flex 배치 */
+  flex-direction: column;        /* 세로 방향 정렬 */
+  align-items: center;           /* 중앙 정렬 */
+  gap: 6px;                      /* 아이템 간 6px 간격 */
+}
+
+/* .story__avatar 클래스(아바타 래퍼) */
+.story__avatar {
+  position: relative;            /* 자식 절대 위치 기준 */
+}
+
+/* .story__border 클래스(SVG 테두리 설정) */
+.story__border {
+  width: 64px;                   /* 너비 64px */
+  height: 64px;                  /* 높이 64px */
+  fill: none;                    /* 내부 채우기 없음 */
+  stroke: #C7C7C7;               /* 테두리 색 연회색 */
+  stroke-width: 1.5;             /* 테두리 두께 1.5px */
+}
+
+/* .story__picture 클래스(아바타 이미지) */
+.story__picture {
+  position: absolute;            /* 절대 위치 */
+  top: 50%;                      /* 부모 세로 중앙 */
+  left: 50%;                     /* 부모 가로 중앙 */
+  transform: translate(-50%, -50%); /* 정확히 중앙 배치 */
+  width: 56px;                   /* 너비 56px */
+  height: 56px;                  /* 높이 56px */
+  border-radius: 50%;            /* 원형 마스크 */
+  overflow: hidden;              /* 넘치는 이미지 가리기 */
+}
+
+/* .story__user 클래스(스토리 사용자 이름 텍스트) */
+.story__user {
+  font-size: 12px;               /* 글자 크기 12px */
+  font-weight: 400;              /* 일반 두께 */
+  color: #999999;                /* 글자 색 회색 */
+  max-width: 72px;               /* 최대 너비 72px */
+  text-overflow: ellipsis;       /* 넘칠 때 말줄임표 */
+  overflow: hidden;              /* 넘치는 텍스트 숨김 */
+  white-space: nowrap;           /* 한 줄로 유지 */
+}
+
+/* ===== 포스트 영역 ===== */
+
+/* .posts 클래스(게시물 리스트) */
+.posts {
+  display: flex;                 /* 세로로 flex 배치 */
+  flex-direction: column;        /* 위에서 아래로 나열 */
+  gap: 8px;                      /* 게시물 간 8px 간격 */
+}
+
+/* .post 클래스(개별 게시물) */
+.post {
+  width: 100%;                   /* 너비 100% */
+  display: flex;                 /* flex 배치 */
+  flex-direction: column;        /* 세로 방향 */
+  overflow: hidden;              /* 넘치는 콘텐츠 숨김 */
+}
+
+/* .post__header 클래스(게시물 헤더) */
+.post__header {
+  background-color: #FFFFFF;     /* 배경 흰색 */
+  border-bottom: 1px solid #DBDBDB; /* 하단에 연회색 경계선 */
+  display: flex;                 /* flex 배치 */
+  justify-content: space-between;/* 좌우 끝 배치 */
+  align-items: center;           /* 세로 중앙 정렬 */
+  padding: 16px;                 /* 내부 여백 16px */
+}
+
+/* .post__profile 클래스(프로필 정보 래퍼) */
+.post__profile {
+  display: flex;                 /* 가로 flex 배치 */
+  align-items: center;           /* 세로 중앙 정렬 */
+  gap: 12px;                     /* 요소 간 12px 간격 */
+}
+
+/* .post__avatar 클래스(프로필 사진) */
+.post__avatar {
+  width: 32px;                   /* 너비 32px */
+  height: 32px;                  /* 높이 32px */
+  border-radius: 50%;            /* 원형 마스크 */
+  overflow: hidden;              /* 넘치는 이미지 숨김 */
+  position: relative;            /* 자식 절대 위치 기준 */
+}
+
+/* .post__user 클래스(게시자 이름 링크) */
+.post__user {
+  font-size: 14px;               /* 글자 크기 14px */
+  font-weight: 500;              /* 중간 두께 */
+  color: #262626;                /* 진한 회색 */
+  text-decoration: none;         /* 밑줄 제거 */
+  text-transform: lowercase;     /* 소문자로 변환 */
+}
+
+/* .post__user 호버 상태 */
+.post__user:hover {
+  text-decoration: underline;    /* 마우스 올리면 밑줄 표시 */
+}
+
+/* .post__more-options 클래스(더보기 버튼) */
+.post__more-options {
+  background-color: transparent; /* 배경 투명 */
+  border: none;                  /* 테두리 없음 */
+  cursor: pointer;               /* 클릭 가능 커서 */
+}
+
+/* .post__content 클래스(게시물 내용 래퍼) */
+.post__content {
+  display: flex;                 /* flex 배치 */
+  position: relative;            /* 자식 절대 위치 기준 */
+}
+
+/* .post__medias 클래스(미디어 리스트) */
+.post__medias {
+  display: flex;                 /* 가로 flex 배치 */
+  overflow-y: hidden;            /* 수직 스크롤 숨김 */
+  overflow-x: auto;              /* 수평 스크롤 허용 */
+  width: 100%;                   /* 너비 100% */
+}
+
+/* .post__footer 클래스(게시물 하단 정보) */
+.post__footer {
+  background-color: #FFFFFF;     /* 배경 흰색 */
+  display: flex;                 /* flex 배치 */
+  flex-direction: column;        /* 세로 방향 */
+  gap: 4px;                      /* 요소 간 4px 간격 */
+  padding: 0 4px;                /* 좌우 패딩 4px */
+}
+
+/* .post__buttons 클래스(버튼 그룹) */
+.post__buttons {
+  display: flex;                 /* 가로 flex 배치 */
+  position: relative;            /* 자식 절대 위치 기준 */
+}
+
+/* .post__button 클래스(개별 버튼) */
+.post__button {
+  background-color: transparent; /* 배경 투명 */
+  border: none;                  /* 테두리 없음 */
+  cursor: pointer;               /* 클릭 가능 커서 */
+  padding: 8px;                  /* 여백 8px */
+}
+
+/* 오른쪽 정렬용 추가 클래스 */
+.post__button--align-right {
+  margin-left: auto;             /* 왼쪽 여백 자동으로 밀어 우측 정렬 */
+}
+
+/* .post__infos 클래스(좋아요/설명/날짜 래퍼) */
+.post__infos {
+  display: flex;                 /* flex 배치 */
+  flex-direction: column;        /* 세로 방향 */
+  padding: 0 8px;                /* 좌우 패딩 8px */
+  gap: 10px;                     /* 요소 간 10px 간격 */
+}
+
+/* 좋아요 및 설명 영역 공통 설정 */
+.post__likes,
+.post__description {
+  display: flex;                 /* 가로 flex 배치 */
+}
+
+/* .post__likes 클래스(좋아요 정보) */
+.post__likes {
+  align-items: center;           /* 세로 중앙 정렬 */
+  gap: 6px;                      /* 요소 간 6px 간격 */
+}
+
+/* .post__likes-avatar 클래스(좋아요 아바타) */
+.post__likes-avatar {
+  width: 20px;                   /* 너비 20px */
+  height: 20px;                  /* 높이 20px */
+  border-radius: 50%;            /* 원형 마스크 */
+  overflow: hidden;              /* 넘치는 이미지 숨김 */
+  position: relative;            /* 자식 절대 위치 기준 */
+}
+
+/* 좋아요 및 설명 텍스트 */
+.post__likes span,
+.post__description span {
+  font-size: 14px;               /* 글자 크기 14px */
+  font-weight: 400;              /* 일반 두께 */
+  color: #262626;                /* 진한 회색 */
+}
+
+/* 좋아요 및 설명 내 링크 */
+.post__likes a,
+.post__description a {
+  font-size: 14px;               /* 글자 크기 14px */
+  font-weight: 500;              /* 중간 두께 */
+  color: #262626;                /* 진한 회색 */
+  text-decoration: none;         /* 밑줄 제거 */
+}
+
+/* .post__name--underline 호버 상태 */
+.post__name--underline:hover {
+  text-decoration: underline;    /* 마우스 올리면 밑줄 표시 */
+}
+
+/* .post__date-time 클래스(게시 시간 텍스트) */
+.post__date-time {
+  font-size: 10px;               /* 글자 크기 10px */
+  font-weight: 400;              /* 일반 두께 */
+  color: #999999;                /* 회색 */
+  text-transform: uppercase;     /* 대문자 변환 */
+}
+
+/* ===== 반응형: 뷰포트 너비 620px 이상 ===== */
+@media (min-width: 620px) {
+  /* .content-container 조정 */
+  .content-container {
+    padding: 30px 0 24px;        /* 상하 여백 확대 */
+  }
+  /* .content 내부 간격 추가 */
+  .content {
+    gap: 24px;                   /* 요소 간 24px 간격 */
+  }
+  /* .stories에 테두리 추가 */
+  .stories {
+    border: 1px solid #DBDBDB;   /* 연회색 테두리 */
+    border-radius: 4px;          /* 모서리 둥글게 */
+  }
+  /* .stories after 선 제거 */
+  .stories::after {
+    content: none;               /* 하단 선 비활성화 */
+  }
+  /* 게시물 간격 확대 */
+  .posts {
+    gap: 24px;
+  }
+  /* 게시물 카드 테두리 및 모서리 */
+  .post {
+    border: 1px solid #DBDBDB;
+    border-radius: 4px;
+  }
+}
+
+/* ===== 반응형: 뷰포트 너비 1024px 이상 ===== */
+@media (min-width: 1024px) {
+  /* .main-container 배경색 변경 */
+  .main-container {
+    background-color: #FAFAFA;   /* 연회색 배경 */
+  }
+  /* .content margin 초기화 */
+  .content {
+    margin: unset;               /* margin 설정 해제 */
+  }
+}
+
+/* ===== side.css ===== */
+
+/* .side-menu 클래스(오른쪽 사이드바) */
+.side-menu {
+  width: 300px;                  /* 너비 300px */
+  display: flex;                 /* flex 배치 */
+  flex-direction: column;        /* 세로 방향 */
+  gap: 24px;                     /* 요소 간 24px 간격 */
+}
+
+/* 사용자 프로필 영역 */
+.side-menu__user-profile {
+  display: flex;                 /* 가로 flex 배치 */
+  align-items: center;           /* 세로 중앙 정렬 */
+  gap: 12px;                     /* 요소 간 12px 간격 */
+}
+
+/* 프로필 아바타 이미지 */
+.side-menu__user-avatar img {
+  width: 56px;                   /* 너비 56px */
+  height: 56px;                  /* 높이 56px */
+  border-radius: 50%;            /* 원형 마스크 */
+}
+
+/* 사용자 정보 텍스트(이름/닉네임) */
+.side-menu__user-info a {
+  font-weight: bold;             /* 굵은 글씨 */
+}
+
+/* Switch 버튼 */
+.side-menu__user-button {
+  margin-left: auto;             /* 버튼을 오른쪽 끝으로 배치 */
+  background: none;              /* 배경 투명 */
+  border: none;                  /* 테두리 없음 */
+  color: #0095f6;                /* 파란색 텍스트 */
+  cursor: pointer;               /* 클릭 가능 커서 */
+}
+
+/* 추천 섹션 헤더 */
+.side-menu__suggestions-header {
+  display: flex;                 /* 가로 flex 배치 */
+  justify-content: space-between;/* 양끝 정렬 */
+  font-size: 14px;               /* 글자 크기 14px */
+  font-weight: bold;             /* 굵은 글씨 */
+}
+
+/* 추천 리스트 컨테이너 */
+.side-menu__suggestions-content {
+  display: flex;                 /* 가로 flex 배치 */
+  flex-direction: column;        /* 세로 방향 */
+  gap: 12px;                     /* 요소 간 12px 간격 */
+}
+
+/* 개별 추천 항목 */
+.side-menu__suggestion {
+  display: flex;                 /* 가로 flex 배치 */
+  align-items: center;           /* 세로 중앙 정렬 */
+  gap: 12px;                     /* 요소 간 12px 간격 */
+}
+
+/* 추천 아바타 이미지 */
+.side-menu__suggestion-avatar img {
+  width: 32px;                   /* 너비 32px */
+  height: 32px;                  /* 높이 32px */
+  border-radius: 50%;            /* 원형 마스크 */
+}
+
+/* 팔로우 버튼 */
+.side-menu__suggestion-button {
+  margin-left: auto;             /* 버튼을 오른쪽 끝으로 배치 */
+  background: none;              /* 배경 투명 */
+  border: none;                  /* 테두리 없음 */
+  color: #0095f6;                /* 파란색 텍스트 */
+  cursor: pointer;               /* 클릭 가능 커서 */
+}
+
+/* 사이드바 하단 링크 영역 */
+.side-menu__footer {
+  font-size: 12px;               /* 글자 크기 12px */
+  color: #8e8e8e;                /* 회색 텍스트 */
+  line-height: 1.6;              /* 줄 높이 1.6 */
+}
+
+/* 하단 링크 목록 */
+.side-menu__footer-list {
+  list-style: none;              /* 기본 불릿 스타일 제거 */
+  display: flex;                 /* 가로 flex 배치 */
+  flex-wrap: wrap;               /* 줄 바꿈 허용 */
+  gap: 12px;                     /* 링크 간 12px 간격 */
+}
